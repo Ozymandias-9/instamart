@@ -30,134 +30,136 @@ class _VerifyPhoneState extends State<VerifyPhone> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/img/fruit-background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: 20,),
-            Image.asset('assets/img/fruit-basket.png', width: 100, height: 100),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Insta',
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black
-                  ),
-                ),
-                Text(
-                  'Mart',
-                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ],
+      body: SafeArea(
+        child: Container(
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/img/fruit-background.jpg'),
+              fit: BoxFit.cover,
             ),
-            const SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0)),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey, // Color de la sombra
-                      offset: Offset(0, 2), // Desplazamiento en eje X y eje Y
-                      blurRadius: 4.0, // Difuminación de la sombra
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 20,),
+              Image.asset('assets/img/fruit-basket.png', width: 100, height: 100),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Insta',
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black
                     ),
-                  ],
-                ),
-                height: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Verificación",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700
+                  ),
+                  Text(
+                    'Mart',
+                    style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), topRight: Radius.circular(12.0)),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey, // Color de la sombra
+                        offset: Offset(0, 2), // Desplazamiento en eje X y eje Y
+                        blurRadius: 4.0, // Difuminación de la sombra
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text.rich(
-                      TextSpan(
+                    ],
+                  ),
+                  height: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Verificación",
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(text: "Ingresa el código que mandamos al número",
+                              style: Theme.of(context).textTheme.labelLarge
+                            ),
+                            TextSpan(text: " ${args.phoneNumber}.",
+                              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              )
+                            ),
+                          ],
+                        )
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextSpan(text: "Ingresa el código que mandamos al número",
-                            style: Theme.of(context).textTheme.labelLarge
-                          ),
-                          TextSpan(text: " ${args.phoneNumber}.",
-                            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
+                          InputVerifyCode(index: 0, callback: codeCallback),
+                          InputVerifyCode(index: 1, callback: codeCallback),
+                          InputVerifyCode(index: 2, callback: codeCallback),
+                          InputVerifyCode(index: 3, callback: codeCallback),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(text: "¿No recibiste un código?",
+                                  style: Theme.of(context).textTheme.labelLarge
+                                ),
+                                TextSpan(text: " Reenvíalo.",
+                                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                                    color: Theme.of(context).colorScheme.primary,
+                                  )
+                                ),
+                              ],
                             )
                           ),
                         ],
-                      )
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InputVerifyCode(index: 0, callback: codeCallback),
-                        InputVerifyCode(index: 1, callback: codeCallback),
-                        InputVerifyCode(index: 2, callback: codeCallback),
-                        InputVerifyCode(index: 3, callback: codeCallback),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(text: "¿No recibiste un código?",
-                                style: Theme.of(context).textTheme.labelLarge
+                      ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamedAndRemoveUntil('home', (r) => false);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: _code == '0000' ? Theme.of(context).colorScheme.primaryContainer : Theme.of(context).colorScheme.primary,
+                                foregroundColor: _code == '0000' ? Colors.grey[600] : Colors.black,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                padding: const EdgeInsets.all(10),
                               ),
-                              TextSpan(text: " Reenvíalo.",
-                                style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                )
-                              ),
-                            ],
-                          )
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).pushNamedAndRemoveUntil('home', (r) => false);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: _code == '0000' ? Theme.of(context).colorScheme.primaryContainer : Theme.of(context).colorScheme.primary,
-                              foregroundColor: _code == '0000' ? Colors.grey[600] : Colors.black,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding: const EdgeInsets.all(10),
+                              child: const Text("Continuar"),
                             ),
-                            child: const Text("Continuar"),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20,),
-                  ]
+                        ],
+                      ),
+                      const SizedBox(height: 20,),
+                    ]
+                  ),
                 ),
-              ),
-            )
-          ]
+              )
+            ]
+          ),
         ),
       )
     );

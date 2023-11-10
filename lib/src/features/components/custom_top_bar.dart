@@ -6,7 +6,7 @@ class CustomTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 80,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/img/fruit-background.jpg'),
